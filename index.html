@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人博客</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* 左侧导航栏样式 */
+        .sidebar {
+            width: 200px;
+            background-color: #f0f0f0;
+            padding: 20px;
+            position: fixed;
+            height: 100%;
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin: 15px 0;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+            padding: 8px;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover {
+            background-color: #ddd;
+        }
+
+        /* 内容区域样式 */
+        .content {
+            flex: 1;
+            margin-left: 200px;
+            padding: 30px;
+        }
+
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 左侧导航栏 -->
+    <nav class="sidebar">
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="#profile" class="nav-link active" data-target="profile">Self Introduction</a>
+            </li>
+            <li class="nav-item">
+                <a href="#projects" class="nav-link" data-target="projects">Projects</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- 内容区域 -->
+    <div class="content">
+        <!-- 个人简介部分 -->
+        <section id="profile" class="content-section active">
+            <h1>Self Introduction</h1>
+            <p>HELLO，welcome to my GitHub page.I am a student in South China University of Technology,majoring in Big Data Application and Management.</p>
+        </section>
+
+        <!-- 项目部分 -->
+        <section id="projects" class="content-section">
+            <h1>My Project</h1>
+            <p>Empty</p>
+        </section>
+    </div>
+
+    <script>
+        // JavaScript实现内容切换
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取所有导航链接
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            // 获取所有内容区块
+            const contentSections = document.querySelectorAll('.content-section');
+
+            // 为每个导航链接添加点击事件
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // 移除所有激活状态
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    contentSections.forEach(section => section.classList.remove('active'));
+                    
+                    // 添加当前激活状态
+                    const target = this.getAttribute('data-target');
+                    this.classList.add('active');
+                    document.getElementById(target).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
